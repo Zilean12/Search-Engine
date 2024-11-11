@@ -68,12 +68,34 @@ for doc_id, tokens in preprocessed_docs.items():
             inverted_index[token].append(doc_id)
 
 # Display Inverted Index with color and tabular format
-def display_inverted_index(index):
-    print("\nInverted Index:\n")
-    headers = ["Term", "Document IDs"]
-    table = [[f"{Fore.CYAN}{term}{Style.RESET_ALL}", f"{Fore.GREEN}{', '.join(doc_ids)}{Style.RESET_ALL}"] for term, doc_ids in index.items()]
-    print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
+# def display_inverted_index(index):
+#     print("\nInverted Index:\n")
+#     headers = ["Term", "Document IDs"]
+#     table = [[f"{Fore.CYAN}{term}{Style.RESET_ALL}", f"{Fore.GREEN}{', '.join(doc_ids)}{Style.RESET_ALL}"] for term, doc_ids in index.items()]
+#     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
 
+# display_inverted_index(inverted_index)
+
+# Display Inverted Index with color and tabular format (sorted and unsorted)
+def display_inverted_index(index):
+    print("\nInverted Index (Original Order):\n")
+    headers = ["Term", "Document IDs"]
+    
+    # Original unsorted index
+    unsorted_table = [[f"{Fore.CYAN}{term}{Style.RESET_ALL}", f"{Fore.GREEN}{', '.join(doc_ids)}{Style.RESET_ALL}"] 
+                      for term, doc_ids in index.items()]
+    print(tabulate(unsorted_table, headers=headers, tablefmt="fancy_grid"))
+    
+    # Sort the index by term
+    sorted_index = dict(sorted(index.items()))
+
+    print("\nInverted Index (Sorted by Term):\n")
+    # Sorted index
+    sorted_table = [[f"{Fore.CYAN}{term}{Style.RESET_ALL}", f"{Fore.GREEN}{', '.join(doc_ids)}{Style.RESET_ALL}"] 
+                    for term, doc_ids in sorted_index.items()]
+    print(tabulate(sorted_table, headers=headers, tablefmt="fancy_grid"))
+
+# Display Inverted Index
 display_inverted_index(inverted_index)
 
 # Step 3: TF-IDF Calculation
