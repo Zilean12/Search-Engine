@@ -71,3 +71,5 @@ Dependencies
 -   **NLTK**: Natural Language Toolkit for text preprocessing
 -   **NumPy**: Numerical operations and vector calculations
 -   **Tabulate**: Formatting data in tables for better readability in the console
+-   **Colorama**: Cross-platform library for color formatting in the terminal
+
