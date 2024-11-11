@@ -7,6 +7,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from flask import Flask, render_template, request
 from tabulate import tabulate
+from colorama import Fore, Style
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -24,17 +25,39 @@ documents = {
 stop_words = set(stopwords.words('english'))
 ps = PorterStemmer()
 
-# Preprocessing function
+# # Preprocessing function
+# def preprocess(text):
+#     print("\nOriginal Text:", text)
+#     text = text.lower()
+#     text = re.sub(f'[{string.punctuation}]', '', text)  # Remove punctuation
+#     tokens = text.split()  # Tokenize
+#     processed_tokens = [ps.stem(word) for word in tokens if word not in stop_words]  # Remove stop words and apply stemming
+#     print("After Stop Words Removal and Stemming:", processed_tokens)
+#     return processed_tokens
+
+# # Step 1: Preprocess all documents
+# preprocessed_docs = {doc_id: preprocess(text) for doc_id, text in documents.items()}
+
+# Preprocessing function with colored output
 def preprocess(text):
-    print("\nOriginal Text:", text)
+    # Display the original text with color formatting
+    print(f"\n{Fore.BLUE}Original Text:{Style.RESET_ALL} {Fore.CYAN}{text}{Style.RESET_ALL}")
+    
+    # Convert to lowercase and remove punctuation
     text = text.lower()
     text = re.sub(f'[{string.punctuation}]', '', text)  # Remove punctuation
     tokens = text.split()  # Tokenize
-    processed_tokens = [ps.stem(word) for word in tokens if word not in stop_words]  # Remove stop words and apply stemming
-    print("After Stop Words Removal and Stemming:", processed_tokens)
+    
+    # Remove stop words and apply stemming
+    processed_tokens = [ps.stem(word) for word in tokens if word not in stop_words]
+    
+    # Display the processed tokens with color formatting
+    formatted_tokens = ', '.join([f"{Fore.YELLOW}{token}{Style.RESET_ALL}" for token in processed_tokens])
+    print(f"{Fore.GREEN}After Stop Words Removal and Stemming:{Style.RESET_ALL} [{formatted_tokens}]")
+    
     return processed_tokens
 
-# Step 1: Preprocess all documents
+#  Step 1: Preprocess all documents
 preprocessed_docs = {doc_id: preprocess(text) for doc_id, text in documents.items()}
 
 # Step 2: Building the Inverted Index
@@ -44,9 +67,14 @@ for doc_id, tokens in preprocessed_docs.items():
         if doc_id not in inverted_index[token]:
             inverted_index[token].append(doc_id)
 
-print("\nInverted Index:")
-for term, doc_ids in inverted_index.items():
-    print(f"'{term}': {doc_ids}")
+# Display Inverted Index with color and tabular format
+def display_inverted_index(index):
+    print("\nInverted Index:\n")
+    headers = ["Term", "Document IDs"]
+    table = [[f"{Fore.CYAN}{term}{Style.RESET_ALL}", f"{Fore.GREEN}{', '.join(doc_ids)}{Style.RESET_ALL}"] for term, doc_ids in index.items()]
+    print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
+
+display_inverted_index(inverted_index)
 
 # Step 3: TF-IDF Calculation
 def compute_tf_idf(docs, index):
@@ -59,14 +87,20 @@ def compute_tf_idf(docs, index):
             tf_idf[doc_id][term] = tf * idf
     return tf_idf
 
-# Display TF-IDF in a table format
+# Display TF-IDF in a color-coded table format
 def display_tf_idf(tf_idf):
-    headers = ["Document", "Term", "TF-IDF Score"]
+    headers = [f"{Fore.BLUE}Document{Style.RESET_ALL}", 
+               f"{Fore.MAGENTA}Term{Style.RESET_ALL}", 
+               f"{Fore.GREEN}TF-IDF Score{Style.RESET_ALL}"]
     table = []
 
     for doc_id, term_scores in tf_idf.items():
         for term, score in term_scores.items():
-            table.append([doc_id, term, round(score, 4)])
+            # Adding color to each column
+            colored_doc_id = f"{Fore.CYAN}{doc_id}{Style.RESET_ALL}"
+            colored_term = f"{Fore.YELLOW}{term}{Style.RESET_ALL}"
+            colored_score = f"{Fore.GREEN}{round(score, 4)}{Style.RESET_ALL}"
+            table.append([colored_doc_id, colored_term, colored_score])
 
     print("\nTF-IDF Scores Table:")
     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
