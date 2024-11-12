@@ -45,11 +45,6 @@ Table of Contents
 
    ```bash
    git clone https://github.com/Zilean12/Search-Engine.git
-   cd Search-Engine
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/Zilean12/Search-Engine.git
    ```
    ```bash
    cd Search-Engine
