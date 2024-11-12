@@ -12,19 +12,19 @@
 Table of Contents
 -----------------
 
--   [Features](#-features)
--   [Prerequisites](#-Prerequisites)
--   [Installation](#-installation)
--   [Project Structure](#-ProjectStructure)
--   [Usage](#-usage)
--   [Key Components](#-key-components)
-    -   [Text Preprocessing](#text-preprocessing)
-    -   [Inverted Index](#inverted-index)
-    -   [TF-IDF Calculation](#tf-idf-calculation)
-    -   [Cosine Similarity](#cosine-similarity)
-    -   [Spell Checking](#spell-checking)
--   [Dependencies](#-dependencies)
-
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Project Structure](-#project-structure)
+- [Usage](#-usage)
+- [Key Components](#-key-components)
+  - [Text Preprocessing](#text-preprocessing)
+  - [Inverted Index](#inverted-index)
+  - [TF-IDF Calculation](#tf-idf-calculation)
+  - [Cosine Similarity](#cosine-similarity)
+  - [Spell Checking](#spell-checking)
+- [Dependencies](#-dependencies)
+  
 ## 📋 Features
 
 - **Text Preprocessing**: Tokenization, stop word removal, and lemmatization
