@@ -16,18 +16,23 @@ This is a simple search engine application built with Flask. It uses TF-IDF and 
 ## Setup Instructions
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/Zilean12/Search-Engine.git
+   ```
+   ```bash
    cd Search-Engine
 2. **Install Required Packages** Install the necessary Python packages listed in `requirements.txt`:
    ```bash
    pip install -r requirements.txt
-3. **Download NLTK Data** Download the stopwords dataset from NLTK:
-
-4. **Run the Application** Start the Flask app by running:
+3. **Download spaCy Model**
+   ```bash
+   python -m spacy download en_core_web_sm
+4. **Download NLTK Data** Download the stopwords dataset from NLTK
+5. **Run the Application** Start the Flask app by running:
    ```bash
    python app.py
-
+   
  The app will be available at `http://127.0.0.1:5000`.
 
 Project Structure
@@ -64,12 +69,15 @@ The TF-IDF score is calculated for each term in each document. TF (Term Frequenc
 
 The similarity between the query and each document is calculated using cosine similarity, which helps rank documents based on relevance.
 
-Dependencies
+## Dependencies
 ------------
 
--   **Flask**: Web framework for Python
--   **NLTK**: Natural Language Toolkit for text preprocessing
--   **NumPy**: Numerical operations and vector calculations
--   **Tabulate**: Formatting data in tables for better readability in the console
--   **Colorama**: Cross-platform library for color formatting in the terminal
+- **Flask**: Web framework for Python, used for handling HTTP requests and serving the web application.
+- **NLTK (Natural Language Toolkit)**: Used for text preprocessing tasks, such as removing stopwords.
+- **NumPy**: Provides support for numerical operations and vector calculations, essential for data processing.
+- **Tabulate**: Formats data in tables for improved readability in the console.
+- **Colorama**: Cross-platform library for adding color formatting to terminal output, making console messages more intuitive.
+- **spaCy**: Advanced NLP library, used with the `en_core_web_sm` model to support text processing and tokenization.
+- **rapidfuzz**: Library for fuzzy string matching, enhancing search capabilities by identifying approximate matches.
+
 
