@@ -1,101 +1,162 @@
+/* Base Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
-.container {
-    max-width: 600px;
-    width: 90%;
-    background: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #bbdefb);
+    max-width: 900px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    color: #333;
+    box-sizing: border-box;
 }
 
 h1 {
-    color: #4a90e2;
-    font-size: 2em;
-    margin-bottom: 10px;
+    font-size: 3em;
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-form {
+/* Form Styling */
+.search-form {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-input[type="text"] {
-    padding: 10px;
-    width: 100%;
-    max-width: 350px;
-    margin-right: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+.search-input {
+    width: 80%;
+    padding: 14px 18px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #4a90e2;
+.search-input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.search-button {
+    padding: 12px 30px;
+    font-size: 18px;
+    background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
 }
 
-button:hover {
-    background-color: #357abd;
+.search-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
 }
 
-h2 {
-    color: #333;
-    font-size: 1.5em;
-    margin-top: 20px;
+.search-button:active {
+    background-color: #004085;
+    transform: translateY(1px);
 }
 
-ul.results-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-li.result-item {
-    background: #fafafa;
-    padding: 15px;
+/* Corrections Styling */
+.corrections {
     margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    text-align: left;
-}
-
-li.result-item strong {
     color: #333;
+    font-style: italic;
+    text-align: center;
+    background-color: #f4f8fb;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Results Container */
+.results {
+    margin-top: 30px;
+}
+
+/* Individual Result Styling */
+.result {
+    background-color: #fff;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.result:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.result .doc-id {
+    color: #007bff;
     font-weight: bold;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    text-decoration: underline;
 }
 
-.score {
-    font-size: 0.9em;
-    color: #666;
-    display: block;
-    margin-top: 5px;
-}
-.query-text {
-    font-size: 1.1em;
-    color: #555;
-    margin-top: 10px;
+.result .text {
+    font-size: 16px;
+    line-height: 1.6;
 }
 
+.result .score {
+    color: #28a745;
+    font-size: 1em;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+/* Highlight Styling */
+.highlight {
+    background-color: #fff3cd;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #d39e00;
+}
+
+/* No Results Message */
 .no-results {
-    font-size: 1.1em;
-    color: #d9534f;
+    text-align: center;
+    color: #666;
+    font-size: 1.2em;
     margin-top: 20px;
+    font-style: italic;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .search-input {
+        width: 90%;
+    }
+
+    .search-button {
+        width: 90%;
+        padding: 10px 25px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .result {
+        margin: 15px 0;
+        padding: 15px;
+    }
+
+    .doc-id {
+        font-size: 1.1em;
+    }
 }
